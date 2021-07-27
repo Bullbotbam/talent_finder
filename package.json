@@ -1,0 +1,27 @@
+{
+  "name": "talent_finder",
+  "version": "1.0.0",
+  "description": "App to find talent",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bullbotbam/talent_finder.git"
+  },
+  "author": "Donald Bull",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bullbotbam/talent_finder/issues"
+  },
+  "homepage": "https://github.com/Bullbotbam/talent_finder#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "express": "^4.17.1",
+    "inquirer": "^8.1.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5"
+  }
+}

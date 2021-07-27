@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS election;
-CREATE DATABASE election;
-USE election;
+DROP DATABASE IF EXISTS talent-finder;
+CREATE DATABASE talent-finder;
+USE talent-finder;

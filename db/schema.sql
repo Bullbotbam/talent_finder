@@ -2,9 +2,9 @@ DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS employee_roles;
 DROP TABLE IF EXISTS departments;
 
-CREATE DATABASE talent;
+-- CREATE DATABASE talent;
 
-USE talent;
+-- USE talent;
 
 CREATE TABLE departments(
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,

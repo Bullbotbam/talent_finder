@@ -11,14 +11,14 @@ VALUES
 INSERT INTO employee_roles
   (title, salary, department_id)
 VALUES
-  ('Salesperson', 95000, '5'),
-  ('Lead Engineer', 120000, '2'),
-  ('Engineer', 80000, '2'),
-  ('UX Designer', 90000, '4'),
-  ('Researcher', 100000, '4'),
-  ('HR Lead', 75000, '1'),
-  ('Senior Dev Ops', 84000, '2'),
-  ('Developer', 94000, '2');
+  ('Salesperson', 95000, 5),
+  ('Lead Engineer', 120000, 2),
+  ('Engineer', 80000, 2),
+  ('UX Designer', 90000, 4),
+  ('Researcher', 100000, 4),
+  ('HR Lead', 75000, 1),
+  ('Senior Dev Ops', 84000, 2),
+  ('Developer', 94000, 2);
  
 
 INSERT INTO employees

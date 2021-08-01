@@ -23,24 +23,27 @@ const appSetUp = () => {
 				name: 'employeePrompt',
 				message: 'What would you like to do?',
 				choices: [
-					'QUIT!!!',
+					'Start Again from the top!!!',
 					'View All Employees',
 					'View All Departments',
 					'View All Roles',
+					'View All Managers',
 					'View All Employees by Department',
 					'View All Employees by Manager',
+					'View All Roles by Department',
 					'Add an Employee',
 					'Add an Department',
 					'Add an Role',
 					'Remove an Employee',
 					'Update an Employee Role',
 					'Update an Employee Manager',
+					'QUIT!!!',
 				],
 			},
 		])
 		.then(function (responses) {
 			switch (responses.employeePrompt) {
-				case 'QUIT!!!':
+				case 'Start Again from the top!!!':
 					WantToExit();
 					break;
 				case 'View All Employees':
@@ -52,23 +55,38 @@ const appSetUp = () => {
 				case 'View All Roles':
 					allRoles();
 					break;
+				case 'View All Managers':
+					allManagers();
+					break;
 				case 'View All Employees by Department':
 					viewAllByDepartment();
 					break;
 				case 'View All Employees by Manager':
 					viewAllByManager();
 					break;
-				case 'Add Employee':
+				case 'View All Roles by Department':
+					allRolesByDepartment();
+					break;
+				case 'Add an Employee':
 					addEmployee();
 					break;
-				case 'Remove Employee':
-					addEmployee();
+				case 'Add an Role':
+					addRoles();
+					break;
+				case 'Add an Department':
+					addDepartment();
+					break;
+				case 'Remove an Employee':
+					deleteEmployee();
 					break;
 				case 'Update Employee Role':
-					addEmployee();
+					updateRole();
 					break;
 				case "Update Employee's Manager":
-					addEmployee();
+					updateManager();
+					break;
+				case 'QUIT!!!':
+					db.end();
 					break;
 			}
 		});
@@ -90,7 +108,21 @@ const WantToExit = () =>
 
 // to view all employees
 function allEmployees() {
-	const research = `SELECT * FROM employees`;
+	const research = `SELECT CONCAT(first_name, ' ', last_name) as Name FROM employees`;
+
+	db.query(research, function (err, res) {
+		console.table(res);
+		appSetUp();
+	});
+}
+// to view all managers
+function allManagers() {
+	const research = `SELECT DISTINCT
+    
+    CONCAT(employees.first_name, employees.last_name) AS Managers
+FROM
+    employees, employee_roles
+    WHERE employees.manager_id = employee_roles.id;`;
 
 	db.query(research, function (err, res) {
 		console.table(res);
@@ -100,7 +132,7 @@ function allEmployees() {
 
 // to view all departments
 function allDepartments() {
-	const research = `SELECT * FROM departments`;
+	const research = `SELECT department_name AS Departments FROM departments`;
 
 	db.query(research, function (err, res) {
 		console.table(res);
@@ -110,6 +142,17 @@ function allDepartments() {
 // to view all roles
 function allRoles() {
 	const research = `SELECT * FROM employee_roles`;
+
+	db.query(research, function (err, res) {
+		console.table(res);
+		appSetUp();
+	});
+}
+// to view all roles by department
+function allRolesByDepartment() {
+	const research = `SELECT DISTINCT title, salary, department_name
+	FROM employee_roles, departments
+	WHERE employee_roles.department_id = departments.id;`;
 
 	db.query(research, function (err, res) {
 		console.table(res);
@@ -163,79 +206,64 @@ function viewAllByManager() {
 		appSetUp();
 	});
 }
+// to add a new department
+async function addDepartment() {
+	const departmentInfo = await inquirer.prompt([
+		{
+			type: 'input',
+			message: 'What is the name of your department?',
+			name: 'department_name',
+		},
+	]);
+	db.query(
+		'INSERT INTO departments SET ?',
+		{
+			department_name: departmentInfo.department_name,
+		},
+		function (err) {
+			if (err) throw err;
+			console.log('New department was added successfully!');
+			appSetUp();
+		}
+	);
+}
 
 // to add and employee
-async function addEmployee() {
-	const research = `INSERT INTO employees SET ?`;
 
-	await db.query(research, function (err, res) {
-		console.table(res);
-		appSetUp();
-	});
-	inquirer
-		.prompt([
-			{
-				type: 'input',
-				name: 'firstName',
-				message: "What is the employee's first name?",
-				validate: (nameInput) => {
-					if (nameInput) {
-						return true;
-					} else {
-						console.log('You need to enter a first name for this employee.');
-						return false;
-					}
-				},
-			},
-			{
-				type: 'input',
-				name: 'lastName',
-				message: "What is the employee's last name?",
-				validate: (nameInput) => {
-					if (nameInput) {
-						return true;
-					} else {
-						console.log('You need to enter a last name for this employee.');
-						return false;
-					}
-				},
-			},
-			{
-				type: 'input',
-				name: 'role',
-				message: 'What role will this employee have?',
-				validate: (nameInput) => {
-					if (nameInput) {
-						return true;
-					} else {
-						console.log('You need to enter a role for this employee.');
-						return false;
-					}
-				},
-			},
-			{
-				type: 'input',
-				name: 'manager',
-				message: 'What is the manager for this employee?',
-				validate: (nameInput) => {
-					if (nameInput) {
-						return true;
-					} else {
-						console.log('You need to enter a manager for this employee.');
-						return false;
-					}
-				},
-			},
-		])
-
-		.then(({ firstName, lastName, role, manager }) => {
-			if (manager == 0) {
-				manager = null;
-			}
-			queries.addEmployee(firstName, lastName, role, manager);
-			this.appSetUp();
-		});
-}
+// async function addEmployee(roles, employees) {
+// 	const employee_roles = await db.query('SELECT * FROM roles');
+// 	const roles = employee_roles.map(({ id, title }) => ({
+// 		name: title,
+// 		value: id,
+// 	}));
+// 	const newEmployee = await inquirer.prompt([
+// 		{
+// 			type: 'input',
+// 			name: 'first_name',
+// 			message: 'First name: ',
+// 		},
+// 		{
+// 			type: 'input',
+// 			name: 'last_name',
+// 			message: 'Last name: ',
+// 		},
+// 		{
+// 			type: 'list',
+// 			name: 'role_id',
+// 			message: 'What is their role? ',
+// 			choices: roles,
+// 		},
+// 		{
+// 			type: 'list',
+// 			name: 'manager_id',
+// 			message: 'Who is the manager for this employee?',
+// 			choices: employees,
+// 		},
+// 	]);
+// 	const research = await db.query('INSERT INTO employees SET ?', employee);
+// 	console.table(research);
+// 	pickToDo();
+// }
 appSetUp();
 // {
 

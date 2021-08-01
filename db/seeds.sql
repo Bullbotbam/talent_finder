@@ -1,3 +1,4 @@
+USE talent;
 INSERT INTO departments
   (department_name)
 VALUES

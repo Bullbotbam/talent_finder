@@ -1,7 +1,7 @@
 # talent_finder
 
+[Talent Finder CLI](https://img.shields.io/npm/v/npm.svg?style=flat)
 A program to keep track of employees
-[![NPM Version](https://img.shields.io/npm/v/npm.svg?style=flat)](Talent Finder CLI)
 <br />
 
   <h1 align="center"> Talent Finder </h1>
@@ -16,9 +16,9 @@ A program to keep track of employees
   - [Tests](#tests)
   - [Links](#links)
   ## Description
-   A CLI Application that will help track team members more efficiently.  The database 'talent' in this Talent Finder Application houses a wealth of information and demonstrates the flexibility of JavaScript and MySQL.
+   This CLI Application that will help track team members more efficiently.  The database 'talent' in this Talent Finder Application houses a wealth of information and demonstrates the flexibility of JavaScript and MySQL.
   ## Installation
-   To use this app you must install [Node.js](https://nodejs.org/en/).  Once you have Node.js installed, then install Node Package Manager(npm).
+   To use this app you must install [Node.js](https://nodejs.org/en/).  Once you have Node.js installed, then install Node Package Manager(npm) with a few very helpful dependencies [Inquirer](https://www.npmjs.com/package/inquirer), [MySQL2](https://www.npmjs.com/package/mysql2), [console.table](https://www.npmjs.com/package/console.table) and for sparkle [figlet](https://www.npmjs.com/package/figlet).
 
 first...
 

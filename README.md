@@ -1,10 +1,10 @@
 # talent_finder
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/Bullbotbam/talent_finder?color=purple&style=for-the-badge)
-A program to keep track of employees
-<br />
 
   <h1 align="center"> Talent Finder </h1>
+  A program to keep track of employees
+<br />
      
   ## Table of Contents
   - [Description](#description)

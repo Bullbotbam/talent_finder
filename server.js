@@ -1,8 +1,5 @@
-// const express = require('express');
 const db = require('./config/connection');
-// const apiRoutes = require('./routes/apiRoutes');
 const inquirer = require('inquirer');
-
 const figlet = require('figlet');
 
 console.log(
@@ -163,15 +160,7 @@ function allRolesByDepartment() {
 		appSetUp();
 	});
 }
-// // add a roles
-// function addRoles() {
-// 	const research = `SELECT * FROM employee_roles`;
 
-// 	db.query(research, function (err, res) {
-// 		console.table(res);
-// 		appSetUp();
-// 	});
-// }
 // to view all employees by department
 function viewAllByDepartment() {
 	const research = `SELECT * FROM employees LEFT JOIN departments ON employees.role_id = departments.id`;
@@ -339,135 +328,4 @@ async function deleteRole() {
 	});
 }
 
-// async function addEmployee(roles, employees) {
-// 	let addInfo =
-// 		"SELECT id as value, CONCAT(first_name, ' ', last_name) as Name FROM employees";
-// 	db.query(addInfo, async (err, employees) => {
-// 		addInfo = 'SELECT id as value, title as Title FROM employees_roles';
-// 		db.query(addInfo, async (err, employee_roles) => {
-// 			// get the name, category, starting bid from user
-// 			const newEmployee = await inquirer.prompt(
-// 				[
-// 					{
-// 						type: 'input',
-// 						message: "What is your employee's first name?",
-// 						name: 'first_name',
-// 					},
-// 					{
-// 						type: 'input',
-// 						message: "What is your employee's last name?",
-// 						name: 'last_name',
-// 					},
-// 					// {
-// 					// 	type: 'list',
-// 					// 	message: "What is your employee's roleID?",
-// 					// 	name: 'role_id',
-// 					// 	choices: roles,
-// 					// },
-// 					// {
-// 					// 	type: 'list',
-// 					// 	message: "Who is your employee's manager?",
-// 					// 	name: 'manager_id',
-// 					// 	choices: employees,
-// 					// },
-// 				],
-// 				(roles, employees)
-// 			);
-// 			addInfo = 'INSERT INTO employees SET ?';
-// 			db.query(addInfo, newEmployee, function (err) {
-// 				if (err) throw err;
-// 				console.log('New employee was added successfully!');
-// 				// re-prompt the user for if they want to bid or post
-// 				appSetUp();
-// 			});
-// 		});
-// 	});
-// }
-
 appSetUp();
-// {
-
-// 		{
-// 			type: 'list',
-// 			name: 'employeesRemoved',
-// 			message: 'What would you like to do?',
-// 			choices: [
-// 				'View All Departments',
-// 				'View All Roles',
-// 				'View All Employees',
-// 				'Add a Department',
-// 				'Add a Role',
-// 				'Add an Employee',
-// 				'Update an Employee Role',
-// 			],
-// 		},
-// 		{
-// 			type: 'input',
-// 			name: 'addAnEmployeeFirstName',
-// 			message: "What is the employee's first name?(Required)",
-// 			validate: (nameInput) => {
-// 				if (nameInput) {
-// 					return true;
-// 				} else {
-// 					console.log('You need to enter a first name for this employee.');
-// 					return false;
-// 				}
-// 			},
-// 		},
-// 		{
-// 			type: 'input',
-// 			name: 'addAnEmployeeLastName',
-// 			message: "What is the employee's last name?(Required)",
-// 			validate: (nameInput) => {
-// 				if (nameInput) {
-// 					return true;
-// 				} else {
-// 					console.log('You need to enter a last name for this employee.');
-// 					return false;
-// 				}
-// 			},
-// 		},
-// 		{
-// 			type: 'list',
-// 			name: 'addAnEmployeeRole',
-// 			message: "What is the employee's role?",
-// 			choices: [
-// 				'Sales Lead',
-// 				'Salesperson',
-// 				'Lead Engineer',
-// 				'Software Engineer',
-// 				'Account Manager',
-// 				'Accountant',
-// 				'Legal Team Lead',
-// 			],
-// 		},
-// 		{
-// 			type: 'list',
-// 			name: 'findAnEmployeeManager',
-// 			message: "Who is the employee's manager?",
-// 			choices: ['None', 'John Doe', '', '', '', '', ''],
-// 		},
-// 		{
-// 			type: 'list',
-// 			name: 'updateAnEmployeeManager',
-// 			message: "Which employee's manager do you want to update?",
-// 			choices: ['Nancy Willis', 'John Doe', '', '', '', '', ''],
-// 		},
-// 		{
-// 			type: 'list',
-// 			name: 'makeEmployeeManager',
-// 			message:
-// 				'Which employee do you want to set as manager for the selected employee?',
-// 			choices: ['Nancy Willis', 'John Doe', '', '', '', '', ''],
-// 		},
-// 	]);
-// };
-
-// Start server after DB connection
-// db.connect((err) => {
-// 	if (err) throw err;
-// 	console.log('Database connected.');
-// 	app.listen(PORT, () => {
-// 		console.log(`Server running on port ${PORT}`);
-// 	});
-// });

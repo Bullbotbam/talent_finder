@@ -1,6 +1,6 @@
 # talent_finder
 
-[Talent Finder CLI](https://img.shields.io/npm/v/npm.svg?style=flat)
+https://img.shields.io/github/last-commit/Bullbotbam/talent_finder/main
 A program to keep track of employees
 <br />
 

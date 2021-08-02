@@ -13,7 +13,7 @@
   - [License](#license)
   - [Contributing](#contributing)
   - [Issues](#issues)
-  - [Tests](#tests)
+  - [ScreenShots](#ScreenShots)
   - [Links](#links)
   ## Description
    This CLI Application that will help track team members more efficiently.  The database 'talent' in this Talent Finder Application houses a wealth of information and demonstrates the flexibility of JavaScript and MySQL.
@@ -50,9 +50,9 @@ With support and assistance from the developer community at large.
 
 Some logic a bit faulty at time up intial production but overall a working application
 
-## Testing
+## ScreenShots
 
-Yes with Jest
+![Screenshot of Talent Finder App](/assets/img/Screen%20Shot%202021-08-02%20at%2012.36.48%20AM.png)
 
 ## Links
 

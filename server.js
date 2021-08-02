@@ -80,10 +80,10 @@ const appSetUp = () => {
 				case 'Remove a Role':
 					deleteRole();
 					break;
-				case 'Update Employee Role':
+				case 'Update an Employee Role':
 					updateRole();
 					break;
-				case "Update Employee's Manager":
+				case 'Update an Employee Manager':
 					updateManager();
 					break;
 				case 'QUIT!!!':
@@ -204,16 +204,33 @@ async function addDepartment() {
 	);
 }
 // to update a department
-async function updateRole(id, roleID) {
-	let [rows, fields] = await db.query(`UPDATE employees SET ? WHERE ?`, [
-		{ role_id: roleID },
-		{ id: id },
-	]);
-
-	appSetUp();
-
-	// console.table(rows);
-	return rows;
+async function updateRole() {
+	db.query('SELECT * FROM employee_roles', async (err, role) => {
+		const roleChange = await inquirer.prompt([
+			{
+				type: 'list',
+				name: 'title',
+				message: 'Which role would you like to update?',
+				choices: () => {
+					return role.map((role) => role.title);
+				},
+			},
+		]);
+		db.query(
+			`UPDATE employee_roles, employees
+			SET title
+			WHERE ? = employee_roles.title`,
+			{
+				title: roleChange.title,
+			},
+			function (err, res) {
+				if (err) throw err;
+				console.log('This role has been updated.');
+				allRoles();
+				appSetUp();
+			}
+		);
+	});
 }
 // to add a new role
 async function addRoles() {

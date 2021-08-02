@@ -327,11 +327,12 @@ async function deleteRole() {
 		db.query(
 			`DELETE FROM employee_roles WHERE ?`,
 			{
-				title: roleRemoval,
+				title: roleRemoval.title,
 			},
 			function (err, res) {
 				if (err) throw err;
-				console.table(employee_roles);
+				console.log('This role has been removed.');
+				allRoles();
 				appSetUp();
 			}
 		);

@@ -186,7 +186,7 @@ function viewAllByDepartment() {
 //gather all managers then prompt(list) choose
 function viewAllByManager() {
 	const research = `SELECT employees.id, employees.first_name, employees.last_name, title, salary, department_name, employees.first_name AS manager_first_name, employees.last_name AS manager_last_name FROM employees INNER JOIN employee_roles ON employees.manager_id = employee_roles.id INNER JOIN departments ON employee_roles.department_id = departments.id LEFT JOIN employees AS employees_manager ON employees.manager_id = employees.id;`;
-	console.log('research', research);
+
 	db.query(research, function (err, res) {
 		console.table(res);
 		appSetUp();
